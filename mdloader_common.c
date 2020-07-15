@@ -336,7 +336,8 @@ int test_mcu(char silent)
             continue;
         }
 
-        if (deviceid == mcu->cidr)
+        /* if (deviceid == mcu->cidr) */ // https://github.com/Massdrop/mdloader/issues/24#issuecomment-653161690
+        if ((deviceid & 0xFFFFF0FF) == mcu->cidr)
         {
             if (!silent && verbose) printf("Found supported device ID: %08X\n", deviceid);
             break;
